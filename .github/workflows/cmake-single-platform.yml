@@ -37,6 +37,7 @@ jobs:
 
     - name: Configure CMake
       run: |
+        ninja --version
         mkdir build
         cd build
         cmake .. --preset vcpkg
