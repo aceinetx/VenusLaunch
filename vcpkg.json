@@ -1,0 +1,6 @@
+{
+  "dependencies": [
+    "libzip",
+    "curl"
+  ]
+}
