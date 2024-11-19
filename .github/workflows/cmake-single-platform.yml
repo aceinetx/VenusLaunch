@@ -23,7 +23,7 @@ jobs:
         git checkout latest
         ./bootstrap-vcpkg.bat
         cd ..
-        echo "::add-path::$(pwd)/vcpkg" # Add vcpkg to PATH
+        echo "$(pwd)/vcpkg" >> $GITHUB_PATH # Add vcpkg to PATH
 
     - name: Install dependencies
       run: |
