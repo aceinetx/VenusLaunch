@@ -19,7 +19,7 @@ jobs:
     - name: Install Ninja
       run: |
         choco install ninja -y
-        echo "C:\ProgramData\chocolatey\bin" >> $GITHUB_PATH # Add Ninja to PATH
+        echo "C:\ProgramData\chocolatey\bin" >> $GITHUB_PATH
         dir C:\ProgramData\chocolatey\bin
 
     - name: Set up vcpkg
@@ -29,7 +29,8 @@ jobs:
         git checkout latest
         ./bootstrap-vcpkg.bat
         cd ..
-        echo "$(pwd)/vcpkg" >> $GITHUB_PATH # Add vcpkg to PATH
+        echo "$(pwd)/vcpkg" >> $GITHUB_PATH 
+        echo "VCPKG_ROOT=$(pwd)/vcpkg" >> $GITHUB_ENV
 
     - name: Install dependencies
       run: |
