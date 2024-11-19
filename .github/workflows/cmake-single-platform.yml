@@ -1,0 +1,41 @@
+name: CMake Build
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up vcpkg
+      run: |
+        git clone https://github.com/microsoft/vcpkg.git
+        cd vcpkg
+        git checkout latest
+        ./bootstrap-vcpkg.bat
+        cd ..
+        echo "::add-path::$(pwd)/vcpkg" # Add vcpkg to PATH
+
+    - name: Install dependencies
+      run: |
+        vcpkg install --triplet x64-windows-static
+
+    - name: Configure CMake
+      run: |
+        mkdir build
+        cd build
+        cmake --preset vcpkg
+
+    - name: Build
+      run: |
+        cd build
+        cmake --build . --config Release
