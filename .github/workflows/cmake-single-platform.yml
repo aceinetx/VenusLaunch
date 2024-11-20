@@ -26,7 +26,6 @@ jobs:
       run: |
         git clone https://github.com/microsoft/vcpkg.git
         cd vcpkg
-        git checkout latest
         ./bootstrap-vcpkg.bat
         cd ..
         echo "$(pwd)/vcpkg" >> $GITHUB_PATH 
